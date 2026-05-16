@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="theme-color" content="#0a0a0a"/>
+<title>Galeria de Mockups · Malharia Queiroz</title>
+<meta name="description" content="Confira nossos trabalhos: uniformes, camisetas sublimadas, DTF e mais."/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2.5'%3E%3Ccircle cx='6' cy='6' r='3'/%3E%3Cpath d='M8.12 8.12 12 12M20 4 8.12 15.88'/%3E%3Ccircle cx='6' cy='18' r='3'/%3E%3Cpath d='M14.8 14.8 20 20'/%3E%3C/svg%3E"/>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --bg:#0a0a0a; --bg2:#141414; --card:#1a1a1a; --ln:#2a2a2a;
+    --gold:#d4af37; --gold2:#f0d77a; --txt:#f5f5f0; --txt2:#a0a098; --txt3:#6b6b63;
+  }
+  html,body{background:var(--bg);}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--txt);min-height:100vh;-webkit-font-smoothing:antialiased;}
+  .serif{font-family:'Cormorant Garamond',Georgia,serif;}
+  ::-webkit-scrollbar{width:8px;}
+  ::-webkit-scrollbar-track{background:var(--bg);}
+  ::-webkit-scrollbar-thumb{background:var(--ln);border-radius:4px;}
+  a{color:inherit;text-decoration:none;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* HEADER */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,10,10,.85);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--ln);
+    padding:16px 24px;display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{display:flex;align-items:center;gap:12px;}
+  .logo-mark{
+    width:42px;height:42px;border-radius:10px;
+    background:linear-gradient(135deg,var(--gold),var(--gold2));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond',serif;font-weight:700;font-size:20px;color:#0a0a0a;
+  }
+  .logo-txt .t1{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;line-height:1.1;}
+  .logo-txt .t2{font-size:10px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;}
+  .nav-back{
+    font-size:13px;color:var(--txt2);padding:8px 16px;border:1px solid var(--ln);
+    border-radius:8px;transition:all .2s;
+  }
+  .nav-back:hover{border-color:var(--gold);color:var(--gold);}
+
+  /* HERO */
+  .hero{text-align:center;padding:64px 24px 40px;}
+  .hero .eyebrow{
+    font-size:11px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;
+    margin-bottom:16px;
+  }
+  .hero h1{
+    font-family:'Cormorant Garamond',serif;font-size:clamp(38px,8vw,64px);
+    font-weight:600;line-height:1.05;margin-bottom:16px;
+  }
+  .hero h1 em{font-style:italic;color:var(--gold);}
+  .hero p{font-size:15px;color:var(--txt2);max-width:480px;margin:0 auto;line-height:1.6;}
+
+  /* FILTERS */
+  .filters{
+    display:flex;gap:8px;justify-content:center;flex-wrap:wrap;
+    padding:8px 24px 32px;max-width:900px;margin:0 auto;
+  }
+  .chip{
+    padding:8px 18px;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;
+    background:var(--card);border:1px solid var(--ln);color:var(--txt2);transition:all .2s;
+  }
+  .chip:hover{border-color:var(--gold);color:var(--txt);}
+  .chip.active{background:var(--gold);border-color:var(--gold);color:#0a0a0a;font-weight:600;}
+
+  /* GRID */
+  .grid{
+    max-width:1200px;margin:0 auto;padding:0 24px 80px;
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;
+  }
+  .item{
+    background:var(--card);border:1px solid var(--ln);border-radius:16px;overflow:hidden;
+    cursor:pointer;transition:all .25s;animation:fadeUp .5s ease-out both;
+  }
+  .item:hover{border-color:var(--gold);transform:translateY(-4px);}
+  .item-img{
+    position:relative;width:100%;aspect-ratio:4/3;background:var(--bg2);overflow:hidden;
+  }
+  .item-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+  .item:hover .item-img img{transform:scale(1.05);}
+  .item-cat{
+    position:absolute;top:12px;left:12px;
+    background:rgba(10,10,10,.8);backdrop-filter:blur(4px);
+    color:var(--gold);font-size:10px;font-weight:600;letter-spacing:.08em;
+    padding:5px 11px;border-radius:999px;text-transform:uppercase;
+  }
+  .item-body{padding:18px;}
+  .item-body h3{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;margin-bottom:6px;}
+  .item-body p{font-size:13px;color:var(--txt2);line-height:1.55;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .item-date{font-size:11px;color:var(--txt3);margin-top:12px;}
+
+  /* LOADING / EMPTY */
+  .state{text-align:center;padding:80px 24px;color:var(--txt2);}
+  .spinner{
+    width:36px;height:36px;border:3px solid var(--ln);border-top-color:var(--gold);
+    border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px;
+  }
+  .state .serif{font-size:24px;color:var(--txt);margin-bottom:6px;}
+
+  /* LIGHTBOX */
+  .lightbox{
+    position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.94);
+    display:none;align-items:center;justify-content:center;padding:24px;
+  }
+  .lightbox.open{display:flex;animation:fadeUp .25s ease-out;}
+  .lb-content{max-width:900px;width:100%;max-height:90vh;display:flex;flex-direction:column;}
+  .lb-img{
+    flex:1;min-height:0;display:flex;align-items:center;justify-content:center;
+    background:var(--bg2);border-radius:16px 16px 0 0;overflow:hidden;
+  }
+  .lb-img img{max-width:100%;max-height:60vh;object-fit:contain;}
+  .lb-info{background:var(--card);border-radius:0 0 16px 16px;padding:24px;border:1px solid var(--ln);border-top:none;}
+  .lb-cat{
+    display:inline-block;color:var(--gold);font-size:11px;font-weight:600;letter-spacing:.1em;
+    text-transform:uppercase;margin-bottom:8px;
+  }
+  .lb-info h2{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;margin-bottom:10px;}
+  .lb-info p{font-size:14px;color:var(--txt2);line-height:1.65;white-space:pre-wrap;}
+  .lb-close{
+    position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;
+    background:var(--card);border:1px solid var(--ln);color:var(--txt);font-size:20px;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;
+  }
+  .lb-close:hover{border-color:var(--gold);color:var(--gold);}
+  .lb-cta{
+    display:flex;gap:10px;margin-top:18px;
+  }
+  .lb-cta a{
+    flex:1;text-align:center;padding:12px;border-radius:10px;font-size:14px;font-weight:600;
+    transition:all .2s;
+  }
+  .lb-wpp{background:#25d366;color:#0a0a0a;}
+  .lb-wpp:hover{filter:brightness(1.1);}
+  .lb-insta{background:var(--card);border:1px solid var(--ln);color:var(--txt);}
+  .lb-insta:hover{border-color:var(--gold);}
+
+  /* FOOTER */
+  footer{
+    border-top:1px solid var(--ln);padding:40px 24px;text-align:center;
+    color:var(--txt3);font-size:13px;line-height:1.9;
+  }
+  footer .serif{font-size:18px;color:var(--gold);margin-bottom:8px;}
+  footer a:hover{color:var(--gold);}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="../" class="logo">
+    <div class="logo-mark">MQ</div>
+    <div class="logo-txt">
+      <div class="t1">Malharia Queiroz</div>
+      <div class="t2">Galeria</div>
+    </div>
+  </a>
+  <a href="../" class="nav-back">← Voltar ao site</a>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Nossos Trabalhos</div>
+  <h1>Galeria de <em>Mockups</em></h1>
+  <p>Conheça os uniformes, camisetas e estampas que produzimos. Inspire-se para o seu próximo pedido.</p>
+</section>
+
+<div class="filters" id="filters"></div>
+
+<div class="grid" id="grid">
+  <div class="state" style="grid-column:1/-1">
+    <div class="spinner"></div>
+    Carregando galeria…
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose">✕</button>
+  <div class="lb-content">
+    <div class="lb-img"><img id="lbImg" src="" alt=""/></div>
+    <div class="lb-info">
+      <span class="lb-cat" id="lbCat"></span>
+      <h2 id="lbTitle"></h2>
+      <p id="lbDesc"></p>
+      <div class="lb-cta">
+        <a class="lb-wpp" id="lbWpp" target="_blank">💬 Pedir orçamento</a>
+        <a class="lb-insta" href="https://instagram.com/malhariaqueiroz2024" target="_blank">📸 Instagram</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="serif">Malharia Queiroz</div>
+  <div>Vila Taboca · São Félix do Xingu — PA</div>
+  <div>
+    <a href="https://wa.me/5594991322940" target="_blank">WhatsApp (94) 99132-2940</a> ·
+    <a href="https://instagram.com/malhariaqueiroz2024" target="_blank">@malhariaqueiroz2024</a>
+  </div>
+  <div style="margin-top:14px;">
+    <a href="admin/" style="font-size:11px;color:var(--txt3);">· área administrativa ·</a>
+  </div>
+</footer>
+
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+const SB_URL = 'https://sxqaimggjhnauzrifokh.supabase.co';
+const SB_KEY = 'sb_publishable_nDuaFep1ZBHA4bizjAwahw_mPz_TRul';
+const sb = createClient(SB_URL, SB_KEY);
+
+const WPP = '5594991322940';
+let mockups = [];
+let activeCat = 'Todos';
+
+const grid = document.getElementById('grid');
+const filtersEl = document.getElementById('filters');
+
+function fmtDate(iso){
+  try { return new Date(iso).toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'}); }
+  catch { return ''; }
+}
+
+function render(){
+  const list = activeCat === 'Todos'
+    ? mockups
+    : mockups.filter(m => m.category === activeCat);
+
+  if(list.length === 0){
+    grid.innerHTML = `<div class="state" style="grid-column:1/-1">
+      <div class="serif">Nenhum mockup ainda</div>
+      <div>Em breve novos trabalhos por aqui.</div>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map((m,i) => `
+    <div class="item" style="animation-delay:${i*0.05}s" data-id="${m.id}">
+      <div class="item-img">
+        ${m.category ? `<span class="item-cat">${m.category}</span>` : ''}
+        <img src="${m.imageUrl}" alt="${(m.title||'').replace(/"/g,'&quot;')}" loading="lazy"/>
+      </div>
+      <div class="item-body">
+        <h3>${m.title || 'Sem título'}</h3>
+        ${m.description ? `<p>${m.description}</p>` : ''}
+        <div class="item-date">${fmtDate(m.createdAt)}</div>
+      </div>
+    </div>
+  `).join('');
+
+  grid.querySelectorAll('.item').forEach(el => {
+    el.addEventListener('click', () => openLightbox(el.dataset.id));
+  });
+}
+
+function renderFilters(){
+  const cats = ['Todos', ...new Set(mockups.map(m => m.category).filter(Boolean))];
+  filtersEl.innerHTML = cats.map(c =>
+    `<button class="chip ${c===activeCat?'active':''}" data-cat="${c}">${c}</button>`
+  ).join('');
+  filtersEl.querySelectorAll('.chip').forEach(el => {
+    el.addEventListener('click', () => {
+      activeCat = el.dataset.cat;
+      renderFilters();
+      render();
+    });
+  });
+}
+
+// Lightbox
+const lb = document.getElementById('lightbox');
+function openLightbox(id){
+  const m = mockups.find(x => x.id === id);
+  if(!m) return;
+  document.getElementById('lbImg').src = m.imageUrl;
+  document.getElementById('lbTitle').textContent = m.title || 'Sem título';
+  document.getElementById('lbDesc').textContent = m.description || '';
+  const catEl = document.getElementById('lbCat');
+  catEl.textContent = m.category || '';
+  catEl.style.display = m.category ? 'inline-block' : 'none';
+  const msg = encodeURIComponent(`Olá! Vi o mockup "${m.title}" na galeria e quero um orçamento.`);
+  document.getElementById('lbWpp').href = `https://wa.me/${WPP}?text=${msg}`;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('lbClose').addEventListener('click', closeLightbox);
+lb.addEventListener('click', e => { if(e.target === lb) closeLightbox(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+
+// Load
+async function load(){
+  try {
+    const { data, error } = await sb.from('mockups').select('*').order('created_at',{ascending:false});
+    if(error) throw error;
+    mockups = data.map(r => ({ ...r.data, id: r.id }));
+    renderFilters();
+    render();
+  } catch(e){
+    console.error(e);
+    grid.innerHTML = `<div class="state" style="grid-column:1/-1">
+      <div class="serif">Erro ao carregar</div>
+      <div>Tente recarregar a página.</div>
+    </div>`;
+  }
+}
+load();
+</script>
+
+</body>
+</html>
