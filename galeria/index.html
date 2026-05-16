@@ -108,39 +108,87 @@
 
   /* LIGHTBOX */
   .lightbox{
-    position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.94);
-    display:none;align-items:center;justify-content:center;padding:24px;
+    position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.96);
+    display:none;flex-direction:column;
   }
   .lightbox.open{display:flex;animation:fadeUp .25s ease-out;}
-  .lb-content{max-width:900px;width:100%;max-height:90vh;display:flex;flex-direction:column;}
-  .lb-img{
-    flex:1;min-height:0;display:flex;align-items:center;justify-content:center;
-    background:var(--bg2);border-radius:16px 16px 0 0;overflow:hidden;
+
+  /* barra superior */
+  .lb-top{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 20px;flex-shrink:0;
   }
-  .lb-img img{max-width:100%;max-height:60vh;object-fit:contain;}
-  .lb-info{background:var(--card);border-radius:0 0 16px 16px;padding:24px;border:1px solid var(--ln);border-top:none;}
-  .lb-cat{
-    display:inline-block;color:var(--gold);font-size:11px;font-weight:600;letter-spacing:.1em;
-    text-transform:uppercase;margin-bottom:8px;
-  }
-  .lb-info h2{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;margin-bottom:10px;}
-  .lb-info p{font-size:14px;color:var(--txt2);line-height:1.65;white-space:pre-wrap;}
+  .lb-counter{font-size:13px;color:var(--txt2);font-weight:500;}
   .lb-close{
-    position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;
+    width:44px;height:44px;border-radius:50%;
     background:var(--card);border:1px solid var(--ln);color:var(--txt);font-size:20px;
     cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;
   }
   .lb-close:hover{border-color:var(--gold);color:var(--gold);}
-  .lb-cta{
-    display:flex;gap:10px;margin-top:18px;
+
+  /* área da imagem */
+  .lb-stage{
+    flex:1;min-height:0;display:flex;align-items:center;justify-content:center;
+    position:relative;padding:0 12px;
   }
+  .lb-img-wrap{
+    max-width:100%;max-height:100%;display:flex;align-items:center;justify-content:center;
+    cursor:zoom-in;overflow:hidden;border-radius:12px;
+  }
+  .lb-img-wrap.zoomed{cursor:zoom-out;}
+  .lb-img-wrap img{
+    max-width:100%;max-height:72vh;object-fit:contain;
+    transition:transform .3s ease;display:block;
+  }
+  .lb-img-wrap.zoomed img{transform:scale(2);max-height:none;}
+
+  /* setas de navegação */
+  .lb-nav{
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:48px;height:48px;border-radius:50%;
+    background:rgba(20,20,20,.85);border:1px solid var(--ln);color:var(--txt);
+    font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:all .2s;z-index:5;
+  }
+  .lb-nav:hover{background:var(--gold);color:#0a0a0a;border-color:var(--gold);}
+  .lb-nav.prev{left:16px;}
+  .lb-nav.next{right:16px;}
+  .lb-nav:disabled{opacity:.25;cursor:default;}
+  .lb-nav:disabled:hover{background:rgba(20,20,20,.85);color:var(--txt);border-color:var(--ln);}
+
+  /* painel de info (descrição) */
+  .lb-info{
+    flex-shrink:0;background:var(--card);border-top:1px solid var(--ln);
+    padding:20px 24px;max-height:42vh;overflow-y:auto;
+  }
+  .lb-info-inner{max-width:760px;margin:0 auto;}
+  .lb-cat{
+    display:inline-block;color:#0a0a0a;background:linear-gradient(135deg,var(--gold),var(--gold2));
+    font-size:11px;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;margin-bottom:10px;padding:4px 12px;border-radius:999px;
+  }
+  .lb-info h2{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,5vw,34px);font-weight:600;margin-bottom:8px;line-height:1.15;}
+  .lb-date{font-size:12px;color:var(--txt3);margin-bottom:14px;}
+  .lb-desc-label{
+    font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);
+    font-weight:600;margin-bottom:6px;
+  }
+  .lb-info p.desc{
+    font-size:15px;color:var(--txt);line-height:1.7;white-space:pre-wrap;
+    padding:14px 16px;background:var(--bg2);border-radius:12px;border:1px solid var(--ln);
+  }
+  .lb-no-desc{font-size:14px;color:var(--txt3);font-style:italic;}
+  .lb-zoom-hint{
+    font-size:12px;color:var(--txt3);margin-top:10px;display:flex;align-items:center;gap:6px;
+  }
+  .lb-cta{display:flex;gap:10px;margin-top:18px;}
   .lb-cta a{
-    flex:1;text-align:center;padding:12px;border-radius:10px;font-size:14px;font-weight:600;
+    flex:1;text-align:center;padding:13px;border-radius:11px;font-size:14px;font-weight:600;
     transition:all .2s;
   }
   .lb-wpp{background:#25d366;color:#0a0a0a;}
   .lb-wpp:hover{filter:brightness(1.1);}
-  .lb-insta{background:var(--card);border:1px solid var(--ln);color:var(--txt);}
+  .lb-insta{background:var(--bg2);border:1px solid var(--ln);color:var(--txt);}
   .lb-insta:hover{border-color:var(--gold);}
 
   /* FOOTER */
@@ -181,15 +229,27 @@
 </div>
 
 <div class="lightbox" id="lightbox">
-  <button class="lb-close" id="lbClose">✕</button>
-  <div class="lb-content">
-    <div class="lb-img"><img id="lbImg" src="" alt=""/></div>
-    <div class="lb-info">
+  <div class="lb-top">
+    <span class="lb-counter" id="lbCounter"></span>
+    <button class="lb-close" id="lbClose">✕</button>
+  </div>
+  <div class="lb-stage">
+    <button class="lb-nav prev" id="lbPrev" aria-label="Anterior">‹</button>
+    <div class="lb-img-wrap" id="lbImgWrap">
+      <img id="lbImg" src="" alt=""/>
+    </div>
+    <button class="lb-nav next" id="lbNext" aria-label="Próximo">›</button>
+  </div>
+  <div class="lb-info">
+    <div class="lb-info-inner">
       <span class="lb-cat" id="lbCat"></span>
       <h2 id="lbTitle"></h2>
-      <p id="lbDesc"></p>
+      <div class="lb-date" id="lbDate"></div>
+      <div class="lb-desc-label" id="lbDescLabel">Descrição</div>
+      <p class="desc" id="lbDesc"></p>
+      <div class="lb-zoom-hint">🔍 Toque na imagem para ampliar</div>
       <div class="lb-cta">
-        <a class="lb-wpp" id="lbWpp" target="_blank">💬 Pedir orçamento</a>
+        <a class="lb-wpp" id="lbWpp" target="_blank">💬 Pedir orçamento deste modelo</a>
         <a class="lb-insta" href="https://instagram.com/malhariaqueirozofficial" target="_blank">📸 Instagram</a>
       </div>
     </div>
@@ -273,29 +333,115 @@ function renderFilters(){
   });
 }
 
-// Lightbox
+// ===== Lightbox =====
 const lb = document.getElementById('lightbox');
-function openLightbox(id){
-  const m = mockups.find(x => x.id === id);
-  if(!m) return;
-  document.getElementById('lbImg').src = m.imageUrl;
+const lbImg = document.getElementById('lbImg');
+const lbImgWrap = document.getElementById('lbImgWrap');
+let lbList = [];      // lista filtrada atual
+let lbIndex = 0;      // índice atual
+
+function fmtDateLong(iso){
+  try { return new Date(iso).toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'}); }
+  catch { return ''; }
+}
+
+function showInLightbox(idx){
+  if(idx < 0 || idx >= lbList.length) return;
+  lbIndex = idx;
+  const m = lbList[idx];
+
+  // imagem (reseta zoom)
+  lbImgWrap.classList.remove('zoomed');
+  lbImg.src = m.imageUrl;
+  lbImg.alt = m.title || '';
+
+  // título
   document.getElementById('lbTitle').textContent = m.title || 'Sem título';
-  document.getElementById('lbDesc').textContent = m.description || '';
+
+  // categoria
   const catEl = document.getElementById('lbCat');
   catEl.textContent = m.category || '';
   catEl.style.display = m.category ? 'inline-block' : 'none';
-  const msg = encodeURIComponent(`Olá! Vi o mockup "${m.title}" na galeria e quero um orçamento.`);
+
+  // data
+  const dateEl = document.getElementById('lbDate');
+  dateEl.textContent = m.createdAt ? fmtDateLong(m.createdAt) : '';
+
+  // descrição
+  const descEl = document.getElementById('lbDesc');
+  const descLabel = document.getElementById('lbDescLabel');
+  if(m.description && m.description.trim()){
+    descEl.textContent = m.description;
+    descEl.className = 'desc';
+    descLabel.style.display = 'block';
+  } else {
+    descEl.textContent = 'Sem descrição para este mockup.';
+    descEl.className = 'lb-no-desc';
+    descLabel.style.display = 'none';
+  }
+
+  // contador
+  document.getElementById('lbCounter').textContent = `${idx+1} de ${lbList.length}`;
+
+  // WhatsApp
+  const msg = encodeURIComponent(`Olá! Vi o modelo "${m.title}" na galeria e quero um orçamento. 😊`);
   document.getElementById('lbWpp').href = `https://wa.me/${WPP}?text=${msg}`;
+
+  // setas
+  document.getElementById('lbPrev').disabled = (idx === 0);
+  document.getElementById('lbNext').disabled = (idx === lbList.length - 1);
+
+  // rola painel de info pro topo
+  document.querySelector('.lb-info').scrollTop = 0;
+}
+
+function openLightbox(id){
+  // monta lista com base no filtro ativo
+  lbList = activeCat === 'Todos'
+    ? mockups
+    : mockups.filter(m => m.category === activeCat);
+  const idx = lbList.findIndex(m => m.id === id);
+  if(idx < 0) return;
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
+  showInLightbox(idx);
 }
+
 function closeLightbox(){
   lb.classList.remove('open');
+  lbImgWrap.classList.remove('zoomed');
   document.body.style.overflow = '';
 }
+
+// zoom ao tocar na imagem
+lbImgWrap.addEventListener('click', () => {
+  lbImgWrap.classList.toggle('zoomed');
+});
+
+// navegação
+document.getElementById('lbPrev').addEventListener('click', () => showInLightbox(lbIndex - 1));
+document.getElementById('lbNext').addEventListener('click', () => showInLightbox(lbIndex + 1));
+
+// fechar
 document.getElementById('lbClose').addEventListener('click', closeLightbox);
-lb.addEventListener('click', e => { if(e.target === lb) closeLightbox(); });
-document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+
+// teclado
+document.addEventListener('keydown', e => {
+  if(!lb.classList.contains('open')) return;
+  if(e.key === 'Escape') closeLightbox();
+  if(e.key === 'ArrowLeft') showInLightbox(lbIndex - 1);
+  if(e.key === 'ArrowRight') showInLightbox(lbIndex + 1);
+});
+
+// swipe no celular
+let touchX = 0;
+lb.addEventListener('touchstart', e => { touchX = e.changedTouches[0].screenX; }, {passive:true});
+lb.addEventListener('touchend', e => {
+  if(lbImgWrap.classList.contains('zoomed')) return;
+  const diff = e.changedTouches[0].screenX - touchX;
+  if(diff > 60) showInLightbox(lbIndex - 1);
+  if(diff < -60) showInLightbox(lbIndex + 1);
+}, {passive:true});
 
 // Load
 async function load(){
